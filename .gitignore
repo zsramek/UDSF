@@ -1,0 +1,39 @@
+#Unity Generated
+Temp/
+Library/
+
+#VS / MonoDevelop Generated
+ExportedObj/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.sup
+/*.sln
+*.user
+*.unityproj
+*.booproj
+.vs/
+
+#OS Generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+#Unity Standard Assets
+Assets/Standard\ Assets/
+
+#Blender
+*.blend1
+*.blend1.meta
+
+#Matlab
+*.asv
+
+#Other
+TestBuilds/
