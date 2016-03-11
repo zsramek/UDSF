@@ -5,7 +5,7 @@ import System.Collections.Generic;
 @script RequireComponent(SpriteRenderer);
 
 @HideInInspector
-public var fadeTime : float;
+public var fadeSpeed : float;
 
 //Declare all expressions here (each is a sprite)
 public var neutral : Sprite;
@@ -47,33 +47,41 @@ function Start()
 
 function SetExpression(expression : String)
 {
+	var i  : float = 0.0;
 	while (spriteRenderer.color.a > 0)
 	{
-		spriteRenderer.color.a = Mathf.Lerp(255.0, 0.0, fadeTime += 0.1);
+		spriteRenderer.color.a = Mathf.Lerp(255.0, 0.0, i);
+		i += fadeSpeed;
 		yield;
 	}
 	spriteRenderer.sprite = expressionDictionary[expression];
+	i = 0.0;
 	while (spriteRenderer.color.a < 255)
 	{
-		spriteRenderer.color.a = Mathf.Lerp(0.0, 255.0, fadeTime += 0.1);
+		spriteRenderer.color.a = Mathf.Lerp(0.0, 255.0, i);
+		i += fadeSpeed;
 		yield;
 	}
 }
 
 function FadeIn()
 {
+	var i  : float = 0.0;
 	while (spriteRenderer.color.a < 255)
 	{
-		spriteRenderer.color.a = Mathf.Lerp(0.0, 255.0, fadeTime += 0.1);
+		spriteRenderer.color.a = Mathf.Lerp(0.0, 255.0, i);
+		i += fadeSpeed;
 		yield;
 	}
 }
 
 function FadeOut()
 {
+	var i  : float = 0.0;
 	while (spriteRenderer.color.a > 0)
 	{
-		spriteRenderer.color.a = Mathf.Lerp(255.0, 0.0, fadeTime += 0.1);
+		spriteRenderer.color.a = Mathf.Lerp(255.0, 0.0, i);
+		i += fadeSpeed;
 		yield;
 	}
 }

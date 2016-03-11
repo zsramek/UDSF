@@ -4,7 +4,8 @@ import System.Collections.Generic;
 
 @script RequireComponent(ScriptReader)
 
-public var characterFadeTime : float;
+@Range (1.0, 10.0)
+public var characterFadeSpeed : float = 1.0;
 
 //Declare all characters here
 public var man : GameObject;
@@ -20,7 +21,7 @@ function Awake()
 	//Set fade time for all characters
 	for (var key in characterDictionary.Keys)
 	{
-		characterDictionary[key].GetComponent.<Character>().fadeTime = characterFadeTime;
+		characterDictionary[key].GetComponent.<Character>().fadeSpeed = characterFadeSpeed / 10000;
 	}
 }
 
