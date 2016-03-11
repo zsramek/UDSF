@@ -6,7 +6,7 @@
 #All lines that start with any other character will be printed onscreen. 
 It was a bright and sunny day in the city. I was in the park.
 Suddenly a man came up to me.
-@appear:man,neutral
+@fadein:man,neutral
 Man: "Did you know?"
 Man: "The apple tree (Malus domestica) is a deciduous tree in the rose family best known for its sweet, pomaceous fruit, the apple. It is cultivated worldwide as a fruit tree, and is the most widely grown species in the genus Malus."
 Man: "The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. Apples have been grown for thousands of years in Asia and Europe, and were brought to North America by European colonists. Apples have religious and mythological significance in many cultures, including Norse, Greek and European Christian traditions."

@@ -4,18 +4,24 @@ import System.Collections.Generic;
 
 @script RequireComponent(ScriptReader)
 
+public var characterFadeTime : float;
+
 //Declare all characters here
 public var man : GameObject;
 
-@HideInInspector
-public var scriptReader : ScriptReader;
-
+private var scriptReader : ScriptReader;
 private var characterDictionary = new Dictionary.<String, GameObject>();
 
 function Awake()
 {
 	scriptReader = GetComponent.<ScriptReader>();
 	PopulateDictionary();
+
+	//Set fade time for all characters
+	for (var key in characterDictionary.Keys)
+	{
+		characterDictionary[key].GetComponent.<Character>().fadeTime = characterFadeTime;
+	}
 }
 
 function PopulateDictionary()
@@ -51,7 +57,7 @@ function FadeIn(character : String, expression : String)
 	scriptReader.busy = false;
 }
 
-function FadeOut(character : String, expression : String)
+function FadeOut(character : String)
 {
 	while (scriptReader.busy == true)
 	{
@@ -71,6 +77,10 @@ function FadeOut(character : String, expression : String)
 		Debug.LogError("Specified object is missing the 'Character' script");
 		return;
 	}
+
+	currentChar.FadeOut();
+
+	scriptReader.busy = false;
 }
 
 function Appear(character : String, expression : String)
@@ -93,9 +103,14 @@ function Appear(character : String, expression : String)
 		Debug.LogError("Specified object is missing the 'Character' script");
 		return;
 	}
+
+	currentChar.SetExpression(expression);
+	currentChar.Appear();
+
+	scriptReader.busy = false;
 }
 
-function Disappear(character : String, expression : String)
+function Disappear(character : String)
 {
 	while (scriptReader.busy == true)
 	{
@@ -115,6 +130,10 @@ function Disappear(character : String, expression : String)
 		Debug.LogError("Specified object is missing the 'Character' script");
 		return;
 	}
+
+	currentChar.Disappear();
+
+	scriptReader.busy = false;
 }
 
 function ChangeExpression(character : String, expression : String)
@@ -137,4 +156,8 @@ function ChangeExpression(character : String, expression : String)
 		Debug.LogError("Specified object is missing the 'Character' script");
 		return;
 	}
+
+	currentChar.SetExpression(expression);
+
+	scriptReader.busy = false;
 }

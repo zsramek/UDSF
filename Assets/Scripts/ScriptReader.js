@@ -23,6 +23,7 @@ private var sr : StreamReader;
 function Awake()
 {
 	printer = GetComponent.<Printer>();
+	characterHandler = GetComponent.<CharacterHandler>();
 }
 
 function OpenScript(scriptPath : String)
@@ -125,5 +126,9 @@ function HandleDirective(directive : String)
 	if (instr == "clear")
 	{
 		printer.Clear();
+	}
+	else if (instr == "fadein")
+	{
+		characterHandler.FadeIn(para1, para2);
 	}
 }
