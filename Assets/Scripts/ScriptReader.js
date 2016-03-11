@@ -3,11 +3,16 @@
 import System.IO;
 
 @script RequireComponent(Printer)
+@script RequireComponent(CharacterHandler)
 
 @HideInInspector
 public var busy : boolean = false;
+
 @HideInInspector
 public var printer : Printer;
+@HideInInspector
+public var characterHandler : CharacterHandler;
+
 @HideInInspector
 public var scriptOpen : boolean = false;
 @HideInInspector
