@@ -1,3 +1,9 @@
+#This is a basic example script.
+#This is a comment.
+
+#Blank lines will be ignored.
+#Use @ for directives; see the documentation for more info.
+#All lines that start with any other character will be printed onscreen. 
 It was a bright and sunny day in the city. I was in the park.
 Suddenly a man came up to me.
 @appear:man,neutral

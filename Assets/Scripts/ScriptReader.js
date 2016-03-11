@@ -59,12 +59,12 @@ function ReadScript()
 			{
 				break;
 			}
-			if (currentLine[0] == '@')
+			if (currentLine != "" && currentLine[0] == '@')
 			{
 				//It's a directive
 				HandleDirective(currentLine);
 			}
-			else
+			else if (currentLine != "" && currentLine[0] != '#')
 			{
 				printer.Print(currentLine);
 			}
@@ -86,7 +86,7 @@ function ReadLine()
 			//It's a directive
 			HandleDirective(currentLine);
 		}
-		else
+		else if (currentLine != "" && currentLine[0] != '#')
 		{
 			printer.Print(currentLine);
 		}
@@ -99,37 +99,31 @@ function ReadLine()
 
 function HandleDirective(directive : String)
 {
-	if (directive == "@clear")
+	//Parse a multipart directive
+	var instr : String = "";
+	var para1 : String = "";
+	var para2 : String = '';
+	var i : int = 1;
+	while (i < directive.length && directive[i] != ':')
+	{
+		instr  = instr + directive[i];
+		i++;
+	}
+	i++;
+	while (i < directive.length && directive[i] != ',')
+	{
+		para1 = para1 + directive[i];
+		i++;
+	}
+	i++;
+	while (i < directive.length)
+	{
+		para2 = para2 + directive[i];
+		i++;
+	}
+
+	if (instr == "clear")
 	{
 		printer.Clear();
-	}
-	else
-	{
-		//Parse a multipart directive
-		var instr : String = "";
-		var para1 : String = "";
-		var para2 : String = '';
-		var i : int = 1;
-		while (directive[i] != ':')
-		{
-			instr  = instr + directive[i];
-			i++;
-		}
-		i++;
-		while (directive[i] != ',')
-		{
-			para1 = para1 + directive[i];
-			i++;
-		}
-		i++;
-		while (i < directive.length)
-		{
-			para2 = para2 + directive[i];
-			i++;
-		}
-
-		Debug.Log(instr);
-		Debug.Log(para1);
-		Debug.Log(para2);
 	}
 }
